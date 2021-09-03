@@ -17,7 +17,7 @@ const getInfo = async () => {
   return sheet;
 };
 
-export const getProductList = async (productList) => {
+const getProductList = async (productList) => {
   let filteredList = await productList
     .filter((product) => product.inativo !== true || product.inativo)
     .filter((product) => product.titulo && product.valor);
@@ -25,7 +25,7 @@ export const getProductList = async (productList) => {
   return filteredList;
 };
 
-export const getProductsCategory = async (productList) => {
+const getProductsCategory = async (productList) => {
   const categories = [];
   let actualCategory = "";
 
@@ -44,9 +44,20 @@ export const getProductsCategory = async (productList) => {
   return categories;
 };
 
-export default async function teste() {
-  let sheet = await getInfo();
-  let products = await getProductList(sheet);
-  let categories = await getProductsCategory(products);
-  console.log("Produtos", products, "\nCategorias", categories);
+export default async function api(tipo) {
+  const sheet = await getInfo();
+  const products = await getProductList(sheet);
+  const categories = await getProductsCategory(products);
+
+  // console.log("tipo", tipo);
+  if (tipo === "produtos") {
+    // console.log("API Produtos");
+    return products;
+  } else if (tipo === "categorias") {
+    // console.log("API Categorias");
+    return categories;
+  } else {
+    // console.error("API incorreta");
+    return [];
+  }
 }
