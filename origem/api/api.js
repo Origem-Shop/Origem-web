@@ -44,7 +44,18 @@ const getProductsCategory = async (productList) => {
   return categories;
 };
 
-export default async function api(tipo) {
+export const getFilteredProducts = async (category) => {
+  const productList = [];
+  let products = await api("produtos");
+
+  let filtered = await products.filter(
+    (product) => product.categoria === category
+  );
+
+  return filtered;
+};
+
+export default async function api(tipo, categoria) {
   const sheet = await getInfo();
   const products = await getProductList(sheet);
   const categories = await getProductsCategory(products);
@@ -56,8 +67,18 @@ export default async function api(tipo) {
   } else if (tipo === "categorias") {
     // console.log("API Categorias");
     return categories;
+  } else if (tipo === "filtrado") {
+    const filtrados = await getFilteredProducts(categoria);
+    console.log("Filtradosxxxxxx", filtrados);
+    return filtrados;
+  } else if (tipo === "vazio") {
+    return null;
   } else {
-    // console.error("API incorreta");
+    console.log("Categoria e Produtos");
+    return {
+      categories,
+      products,
+    };
     return [];
   }
 }

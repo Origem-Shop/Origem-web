@@ -1,7 +1,6 @@
 import React from "react";
+import { getFilteredProducts } from "../../api/api";
 
-export default class ListProducts extends React.Component {
-  render() {
-    return <div>Lista de Produtos {this.props.categoria}</div>;
-  }
+export default function ListProducts({ data }) {
+  return <h2>Lista de Produtos</h2>;
 }
