@@ -4,15 +4,13 @@ import Link from "next/link";
 
 export default function Products({ productsList }) {
   const router = useRouter();
-  console.log("Router", router);
-  console.log("Produtos", productsList);
   const { products } = router.query;
   return (
     <>
       {productsList ? (
         <div>
           {productsList.map((produto, key) => (
-            <Link href={`/product/${produto}`} key={key}>
+            <Link href={`/product/${produto.id}`} key={key}>
               <div key={key}> {produto.titulo} </div>
             </Link>
           ))}

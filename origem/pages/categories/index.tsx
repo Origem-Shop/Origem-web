@@ -3,6 +3,7 @@ import api from "../../api/api";
 import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import CategoryListItem from "../../components/categoryListItem";
 
 export default function ListCategories(categories) {
   const { isFallback } = useRouter();
@@ -15,9 +16,11 @@ export default function ListCategories(categories) {
       {categories.categories ? (
         <div>
           {categories.categories.map((categoria, key) => (
-            <Link href={`/products/${categoria}`} key={key}>
-              <div key={key}> {categoria} </div>
-            </Link>
+            <CategoryListItem
+              key={key}
+              href={`/products/${categoria}`}
+              categoria={categoria}
+            />
           ))}
         </div>
       ) : (
@@ -31,7 +34,6 @@ export default function ListCategories(categories) {
 //   const filtrados = await api("categorias");
 
 //   const paths = filtrados.map((produto) => {
-//     console.log(produto);
 //     return {
 //       params: {
 //         produto,

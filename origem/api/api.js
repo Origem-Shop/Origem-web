@@ -55,27 +55,38 @@ export const getFilteredProducts = async (category) => {
   return filtered;
 };
 
-export default async function api(tipo, categoria) {
+export const getProductById = async (id, productList) => {
+  console.log("ID", id);
+  let product = await productList.filter((produto) => produto.id === id);
+  console.log("ID", product);
+  return product;
+};
+
+export default async function api(tipo, categoria, id) {
   const sheet = await getInfo();
-  const products = await getProductList(sheet);
+  const productList = await getProductList(sheet);
+  var productsWithID = productList.map((produto, index) => {
+    produto.id = (index + 1).toString();
+    return produto;
+  });
+  const products = productsWithID;
   const categories = await getProductsCategory(products);
 
-  // console.log("tipo", tipo);
   if (tipo === "produtos") {
-    // console.log("API Produtos");
+    console.log("Produtos", products);
     return products;
   } else if (tipo === "categorias") {
-    // console.log("API Categorias");
     return categories;
   } else if (tipo === "filtrado") {
-    console.log("Context filtrado", categoria);
     const filtrados = await getFilteredProducts(categoria);
-    console.log("Filtradosxxxxxx", filtrados, categoria);
     return filtrados;
   } else if (tipo === "vazio") {
     return null;
+  } else if (tipo === "id") {
+    const product = await getProductById(id, products);
+    console.log("Produto ID", product[0]);
+    return product[0];
   } else {
-    console.log("Categoria e Produtos");
     return {
       categories,
       products,
