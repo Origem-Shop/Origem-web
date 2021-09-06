@@ -4,7 +4,7 @@ import Link from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
-export default function ListCategories(category) {
+export default function ListCategories(categories) {
   const { isFallback } = useRouter();
 
   if (isFallback) {
@@ -12,20 +12,10 @@ export default function ListCategories(category) {
   }
   return (
     <div>
-      {console.log(category.categories)}
-      {category.categories ? (
+      {categories.categories ? (
         <div>
-          {category.categories.map((categoria, key) => (
-            <Link
-              key={key}
-              href={{
-                pathname: "/listFilteredProducts",
-                query: {
-                  category: categoria,
-                },
-              }}
-              as={encodeURI(`/categoria/${categoria}`)}
-            >
+          {categories.categories.map((categoria, key) => (
+            <Link href={`/products/${categoria}`} key={key}>
               <div key={key}> {categoria} </div>
             </Link>
           ))}
@@ -55,9 +45,10 @@ export default function ListCategories(category) {
 // };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const categories = await api("categorias");
   return {
     props: {
-      categories: await api("categorias"),
+      categories: categories,
     },
     revalidate: 100,
   };

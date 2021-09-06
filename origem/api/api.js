@@ -68,8 +68,9 @@ export default async function api(tipo, categoria) {
     // console.log("API Categorias");
     return categories;
   } else if (tipo === "filtrado") {
+    console.log("Context filtrado", categoria);
     const filtrados = await getFilteredProducts(categoria);
-    console.log("Filtradosxxxxxx", filtrados);
+    console.log("Filtradosxxxxxx", filtrados, categoria);
     return filtrados;
   } else if (tipo === "vazio") {
     return null;
@@ -79,6 +80,5 @@ export default async function api(tipo, categoria) {
       categories,
       products,
     };
-    return [];
   }
 }
