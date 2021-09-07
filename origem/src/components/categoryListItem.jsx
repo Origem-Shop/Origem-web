@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 const Categoria = styled.div`
   flex-direction: row;
   margin: 0.2rem 1rem;
+  font-size: xx-large;
 `;
 
 export default function CategoryListItem({ href, categoria }) {

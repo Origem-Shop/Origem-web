@@ -3,6 +3,18 @@ import api from "../../api/api";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import CategoryListItem from "../../components/categoryListItem";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: 20%;
+  font-size: xx-large;
+`;
 
 export default function ListCategories(categories) {
   const { isFallback } = useRouter();
@@ -11,7 +23,7 @@ export default function ListCategories(categories) {
     return <h3> Carregando... </h3>;
   }
   return (
-    <div>
+    <StyledDiv>
       <CategoryListItem href={`/allProducts`} categoria={"Todos os Produtos"} />
       {categories.categories ? (
         <div>
@@ -26,7 +38,7 @@ export default function ListCategories(categories) {
       ) : (
         <p>Carregando</p>
       )}
-    </div>
+    </StyledDiv>
   );
 }
 

@@ -8,6 +8,7 @@ import Document, {
   NextScript,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import Navbar from "../components/NavBar";
 
 export default class MyDocument extends Document {
   static async getInitialProps(
@@ -49,6 +50,8 @@ export default class MyDocument extends Document {
           />
           {/* <title>Origem Shop</title> */}
         </Head>
+        <Navbar />
+
         <body>
           <Main />
           <NextScript />
