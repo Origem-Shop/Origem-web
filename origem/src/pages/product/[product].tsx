@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import api from "../../api/api";
+import { Container, Row, Col, CardGroup, Card } from "react-bootstrap";
 
 export default function ProductItem({ product }) {
   const { isFallback } = useRouter();
@@ -9,9 +10,16 @@ export default function ProductItem({ product }) {
   }
 
   return (
-    <h1>
-      Produto Item {product.id} {product.titulo}
-    </h1>
+    <Container>
+      <Card>
+        <Card.Img variant="top" src={product.linkFoto} />
+        <Card.Body>
+          <Card.Title>{product.titulo}</Card.Title>
+          <Card.Text>{product.descricao}</Card.Text>
+        </Card.Body>
+        <Card.Footer>{product.valor}</Card.Footer>
+      </Card>
+    </Container>
   );
 }
 

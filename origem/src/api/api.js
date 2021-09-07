@@ -45,10 +45,9 @@ const getProductsCategory = async (productList) => {
 };
 
 export const getFilteredProducts = async (category) => {
-  const productList = [];
-  let products = await api("produtos");
+  const products = await api("produtos");
 
-  let filtered = await products.filter(
+  const filtered = await products.filter(
     (product) => product.categoria === category
   );
 

@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import { GetStaticProps } from "next";
 import api from "../api/api";
-import { GetStaticPaths, GetStaticProps } from "next";
 
 export default function Home({ data }) {
   return (

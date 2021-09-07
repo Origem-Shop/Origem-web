@@ -13,6 +13,7 @@ export default function ListCategories(categories) {
   }
   return (
     <div>
+      <CategoryListItem href={`/allProducts`} categoria={"Todos os Produtos"} />
       {categories.categories ? (
         <div>
           {categories.categories.map((categoria, key) => (
