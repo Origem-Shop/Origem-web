@@ -55,9 +55,7 @@ export const getFilteredProducts = async (category) => {
 };
 
 export const getProductById = async (id, productList) => {
-  console.log("ID", id);
   let product = await productList.filter((produto) => produto.id === id);
-  console.log("ID", product);
   return product;
 };
 
@@ -72,7 +70,6 @@ export default async function api(tipo, categoria, id) {
   const categories = await getProductsCategory(products);
 
   if (tipo === "produtos") {
-    console.log("Produtos", products);
     return products;
   } else if (tipo === "categorias") {
     return categories;
@@ -83,7 +80,6 @@ export default async function api(tipo, categoria, id) {
     return null;
   } else if (tipo === "id") {
     const product = await getProductById(id, products);
-    console.log("Produto ID", product[0]);
     return product[0];
   } else {
     return {

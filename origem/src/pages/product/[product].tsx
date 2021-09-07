@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import api from "../../api/api";
-import { Container, Row, Col, CardGroup, Card } from "react-bootstrap";
+import React from "react";
+import { Container, Card } from "react-bootstrap";
 
 export default function ProductItem({ product }) {
   const { isFallback } = useRouter();
@@ -23,10 +24,8 @@ export default function ProductItem({ product }) {
   );
 }
 
-export async function getServerSideProps(context: any) {
-  console.log("Context", context.params.product);
+export async function getServerSideProps(context) {
   const product = await api("id", null, context.params.product);
-  console.log("Produto com ID", product);
   return {
     props: {
       product: product,

@@ -8,7 +8,6 @@ import Document, {
   NextScript,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import favicon from "../../public/favicon.png";
 
 export default class MyDocument extends Document {
   static async getInitialProps(
@@ -20,6 +19,7 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
+          // eslint-disable-next-line react/display-name
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
         });

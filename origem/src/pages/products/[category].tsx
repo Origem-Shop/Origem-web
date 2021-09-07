@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
 import api from "../../api/api";
 import Link from "next/link";
+import React from "react";
 
 export default function Products({ productsList }) {
-  const router = useRouter();
-  const { products } = router.query;
+  // const router = useRouter();
+  // const { products } = router.query;
   return (
     <>
       {productsList ? (
@@ -22,7 +22,7 @@ export default function Products({ productsList }) {
   );
 }
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context) {
   const products = await api("filtrado", context.params.category.toString());
   return {
     props: {

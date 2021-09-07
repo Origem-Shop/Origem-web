@@ -3,8 +3,7 @@ import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import ProductListItem from "../../components/productGrid";
 import React from "react";
-import Link from "next/link";
-import { Container, Row, Col, CardGroup, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 
 const StyledRow = styled(Row)``;
