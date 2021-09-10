@@ -1,22 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import styled from "styled-components";
-import { Button } from "react-bootstrap";
-
-const Categoria = styled.div`
-  flex-direction: row;
-  margin: 0.2rem 1rem;
-  font-size: xx-large;
-`;
+import styles from "../styles/Home.module.css";
 
 export default function CategoryListItem({ href, categoria }) {
   return (
     <Link href={href}>
-      <Categoria className="d-grid gap-2">
-        <Button size="lg" variant="outline-dark">
-          {categoria}
-        </Button>
-      </Categoria>
+      <div className={styles.categoria}>{categoria}</div>
     </Link>
   );
 }
