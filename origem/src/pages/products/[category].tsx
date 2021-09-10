@@ -1,24 +1,34 @@
 import api from "../../api/api";
-import Link from "next/link";
 import React from "react";
+import ProductListItem from "../../components/productGrid";
+import { Container, Row, Col } from "react-bootstrap";
+import styled from "styled-components";
+
+const StyledRow = styled(Row)``;
+
+const StyledCol = styled(Col)``;
 
 export default function Products({ productsList }) {
   // const router = useRouter();
   // const { products } = router.query;
   return (
-    <>
+    <Container>
       {productsList ? (
-        <div>
+        <StyledRow>
           {productsList.map((produto, key) => (
-            <Link href={`/product/${produto.id}`} key={key}>
-              <div key={key}> {produto.titulo} </div>
-            </Link>
+            <StyledCol key={key}>
+              <ProductListItem
+                key={key}
+                href={`/product/${produto.id}`}
+                produto={produto}
+              />
+            </StyledCol>
           ))}
-        </div>
+        </StyledRow>
       ) : (
         <p>Carregando</p>
       )}
-    </>
+    </Container>
   );
 }
 
